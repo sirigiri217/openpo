@@ -1,0 +1,30 @@
+﻿
+
+
+<div class="col-md-12" style="margin-bottom:15px;width:100%" >
+
+    <div class="dataloader container" ng-if="loadingstatus">
+        <strong>Loading Data</strong>
+        <img src="~/Content/Assets/ajax-loader.gif" />
+    </div>
+    <div class="container" ng-if="norecords"><strong>No Records found for this search criteria !!</strong></div>
+    <div cg-busy="{promise:getData,message:'Loading Data...'}">
+        <section style="min-height: 45em;" class="wrap">
+
+            <div ng-cloak ng-if="showgrid">
+                <div ui-grid="OpenPOgridOptions" ui-grid-pagination ui-grid-selection ui-grid-resize-columns ui-grid-exporter ui-grid-auto-resize ui-grid-dynamic-height class="myGrid grid12" style="min-height:50em">
+                    <div class="grid-msg-overlay" ng-hide="!vm.loading">
+                        <div class="msg">
+                            <span>
+                                Loading Data...
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="watermark" ng-show="!OpenPOgridOptions.data.length">No data available</div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>

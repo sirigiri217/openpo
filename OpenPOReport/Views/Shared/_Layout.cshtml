@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="~/favicon.ico">
+    
+    <title>Open PO Report</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap-combined.min.css" rel="stylesheet" />
+    <link href="~/Content/components-font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Assets/CSS/main.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/uicss/ui-grid.css" rel="stylesheet" />
+    <link href="~/Content/uicss/sky-ui-grid.css" rel="stylesheet" />
+    <link href="~/Scripts/angular-busy/angular-busy.css" rel="stylesheet" />
+    <link href="~/Content/angular-material.css" rel="stylesheet" />
+    <link href="~/Scripts/multiselect/bootstrap-multiselect.css" rel="stylesheet" />
+
+</head>
+<body ng-app="OpenPO" ng-controller="HomeController">
+
+    <header id="header">
+        <div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  fadeInDown one">
+                <a href="" class="logo">
+
+                    @*<img src="~/Content/Assets/management.svg" style=" float: left; width: 3em;" />*@
+                    <strong style="float: left;font-family:'Segoe UI'">
+                        <i class="fa fa-bars openleftnav" ng-click="openLeftMenu()"></i>   Open PO Report
+                    </strong>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center fadeInDown two">
+                <img src="~/Content/Assets/logo.png" style=" width: 3em;max-width: 40px;" />
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  fadeInDown three">
+                @*<nav>
+                        <a href="#menu">Menu</a>
+                    </nav>*@
+                <strong style="float: right;font-family:'Segoe UI';color:#fff">  {{loggedinuser}} <img style=" border-radius: 50%;" ng-src="{{imageurl}}" /></strong>
+            </div>
+        </div>
+
+
+
+    </header>
+    <div id="sideNavContainer"
+         layout="row" ng-cloak>
+        <md-sidenav md-component-id="left" class="md-sidenav-left">
+
+            <nav id="menu1" style="margin-top:24%;">
+                <ul class="links">
+                    <h4 style="
+   width: 100%;
+    text-align:center;
+    padding: 4px 0;
+    margin: 2px -6.5px;
+    background: #09abe0;
+    color: white;
+">
+                        Quick Links
+                    </h4>
+                    <li>
+                        <a href="http://tableaudev.amat.com/#/site/SSG-GSCA/views/HadoopjobStatusDashboard/GSCOJobStatusApp?:iid=1" target="_blank">Hadoop Jobs dashboard</a>
+                    </li>
+                    <li>
+                        <a href="http://gscobi" target="_blank">GSCO BI</a>
+                    </li>
+                    <li>
+                        <a href="http://gsca" target="_blank">GSCA</a>
+                    </li>
+                </ul>
+
+
+
+            </nav>
+        </md-sidenav>
+
+        @*<md-content>
+                <md-button ng-click="openLeftMenu()">Open Left Menu</md-button>
+                <md-button ng-click="openRightMenu()">Open Right Menu</md-button>
+            </md-content>*@
+
+        <md-sidenav md-component-id="right" class="md-sidenav-right">
+            @*<md-button href="http://google.com">Google</md-button>*@
+        </md-sidenav>
+    </div>
+    <!-- Nav -->
+    @*<nav id="menu">
+            <ul class="links">
+                <li>
+                    <a href="">Link1</a>
+                </li>
+                <li>
+                    <a href="">Link2</a>
+                </li>
+                <li>
+                    <a href="">Link3</a>
+                </li>
+            </ul>
+        </nav>*@
+    <!-- <div class="container"> -->
+
+    @RenderBody()
+
+
+    <footer Id="footer" class="footer"  >
+
+        Applied Materials Confidential  |  For questions contact Himanshu Mehta
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    <script src="~/Scripts/ui-grid.js"></script>
+  
+    <script src="~/Scripts/OpenPO.js"></script>
+    <script src="~/Content/Assets/js/jquery.scrolly.min.js"></script>
+    <script src="~/Content/Assets/js/skel.min.js"></script>
+    <script src="~/Content/Assets/js/util.js"></script>
+    <script src="~/Content/Assets/js/main.js"></script>
+
+
+    <script src="~/Scripts/Angular-multiselect/angular-resource.min.js"></script>
+    <script src="~/Scripts/Angular-multiselect/multiselect.js"></script>
+    <script src="~/Scripts/Angular-multiselect/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/Angular-multiselect/angular-ui-router.min.js"></script>
+    <script src="~/Scripts/Angular-multiselect/angular-ui-ieshiv.min.js"></script>
+    <script src="~/Scripts/Angular-multiselect/angular-ui.min.js"></script>
+    <script src="~/Scripts/export scripts/csv.js"></script>
+    <script src="~/Scripts/export scripts/lodash.min.js"></script>
+    <script src="~/Scripts/xls-sheet/shim.min.js"></script>
+    <script src="~/Scripts/export scripts/jszip.min.js"></script>
+
+    <script src="~/Scripts/xls-sheet/xlsx.js"></script>
+    <script src="~/Scripts/xls-sheet/xlsx.core.min.js"></script>
+    <script src="~/Scripts/xls-sheet/SheetJS-angular.js"></script>
+
+    <script src="~/Scripts/export scripts/excel-builder.dist.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            // $(".openleftnav").trigger("click");
+            $(window).scrollTop(0);
+            //$('#pripbgdropdown').multiselect();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+﻿
+
+<div class="row" style="float:right;width:100%">
+    <div class="button small special" style="float:left;font-size:large; background:none;padding-left:5px;    cursor: default;">
+        <span style="color:#45afd9"><i class="fa fa-calendar"></i>Last Refresh:{{refreshdate | date: 'MM-dd-yyyy' }}</span> </div>
+        <div class="button small special" style="float:right;font-size:large; background:none">
+            <span style="color:coral" ng-Click="resetDetails()"><i class="fa  fa-recycle"></i>Reset | </span>
+            <span style="color:green">
+                <a href="http://dca-db-265/podata/4060_openpo.xlsb"><i class="fa fa-download"></i>Export 4060 POs</a>
+                <a href="http://dca-db-265/podata/4070_openpo.xlsb">| <i class="fa fa-download"></i>Export 4070 POs</a>
+                <a href="http://dca-db-265/podata/openpo.xlsb">| <i class="fa fa-download"></i>Export All POs</a>
+            </span>
+            <span style="color:green" ng-hide="downloadTableDataBtn"> |  </span>
+            <span style="color:green" ng-Click="downloadExcel()" ng-hide="downloadTableDataBtn"><i class="fa fa-download"></i>Export</span>
+            <span style="color:green" ng-hide="downloadTableDataBtn"> |  </span>
+            <span style="color:black" ng-hide="!showgrid" ng-Click="togglecontrols()">
+                Selection Pane         <i class="fa fa-toggle-on" style="color:green;font-size:x-large;" ng-show="controlsshow" ng-Click="togglecontrols()"></i>
+                <i class="fa fa-toggle-off" style="color:red;font-size:x-large;" ng-show="!controlsshow" ng-Click="togglecontrols()"></i>
+            </span>
+
+        </div>
+    </div>
+
+<div class="row " style="margin-top:3px" ng-show="controlsshow">
+    <div class="row col-md-10" style="Padding-top:3px">
+        
+       
+       
+
+            <table class="table" style="margin-left: 1%;box-shadow: 0 1px 0px 3px whitesmoke;">
+                <tr>
+                <td>
+    <div class="col-md-5">
+        <span >Material Number:</span>
+    </div><div class="col-md-7">
+        <input type="text" ng-model="materialnum" style="min-height:24px;margin:0;    width: 100%;" />
+    </div>
+</td>
+                <td>
+    <div class="col-md-5">
+        <span>Plant Code:</span>
+    </div>
+    <div class="col-md-7">
+
+
+        <multiselect class="input-xlarge multiselect" ng-model="plantcdselection" options="x.plantcd for x in plantcdoptions"
+                     header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                     enable-filter="true" filter-placeholder="Filter ....">
+        </multiselect>
+    </div>
+</td><td>
+    <div class="col-md-5">
+        <span>Max PBG:</span>
+    </div>
+    <div class="col-md-7">
+
+
+
+
+
+        <multiselect class="input-xlarge multiselect" ng-model="pripbgselection" options="x.pripbg for x in pripbgoptions"
+                     header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                     enable-filter="true" filter-placeholder="Filter ....">
+        </multiselect>
+
+    </div>
+</td></tr>
+                <tr>
+                <td>
+    <div class="col-md-5">
+        <span  >PO Number:</span>
+    </div><div class="col-md-7">
+
+        <input type="text" ng-model="ponum" style="min-height:24px;margin:0;    width: 100%;" />
+    </div>
+</td>
+                <td>
+    <div class="col-md-5">
+        <span>PO Type:</span>
+    </div><div class="col-md-7">
+        <multiselect class="input-xlarge multiselect" ng-model="potypeselection" options="x.potype for x in potypeoptions"
+                     header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                     enable-filter="true" filter-placeholder="Filter ....">
+        </multiselect>
+    </div>
+</td>
+                <td>
+                    <div class="col-md-5">
+                        <span>Supplier Site:</span>
+                    </div>
+                    <div class="col-md-7">
+                        <multiselect class="input-xlarge multiselect" ng-model="suppliersitenameselection" options="x.suppliersitename for x in suppliersitenameoptions"
+                                     header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                                     enable-filter="true" filter-placeholder="Filter ....">
+                        </multiselect>
+                    </div>
+
+                </td></tr>
+                <tr>
+                    <td>
+                        <div class="col-md-5">
+                            <span  >PGroup Name:</span>
+                        </div>
+                        <div class="col-md-7">
+                            <multiselect class="input-xlarge multiselect" ng-model="plannernameselection" options="x.plannername for x in plannernameoptions"
+                                         header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                                         enable-filter="true" filter-placeholder="Filter ....">
+                            </multiselect>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-md-5">
+                            <span>PGroup Manager:</span>
+                        </div>
+                        <div class="col-md-7">
+
+                            <multiselect class="input-xlarge multiselect" ng-model="plannermanagerselection" options="x.plannermanager for x in plannermanageroptions"
+                                         header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                                         enable-filter="true" filter-placeholder="Filter ....">
+                            </multiselect>
+                        </div>
+</td>
+                    <td>
+                        <div class="col-md-5">
+                            <span>Parent Supplier:</span>
+                        </div>
+                        <div class="col-md-7">
+                            <multiselect class="input-xlarge multiselect" ng-model="ParentSupplierNameselection" options="x.ParentSupplierName for x in ParentSupplierNameoptions"
+                                         header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                                         enable-filter="true" filter-placeholder="Filter ....">
+                            </multiselect>
+                        </div>
+                    </td>
+      </tr>
+                <tr>
+                    <td>
+                        <div class="col-md-5">
+                            <span>PGroup Director:</span>
+                        </div><div class="col-md-7">
+                            <multiselect class="input-xlarge multiselect" ng-model="plannerdirectorselection" options="x.plannerdirector for x in plannerdirectoroptions"
+                                         header="None Selected" selected-header="options selected" multiple="true" complex-models="true" required
+                                         enable-filter="true" filter-placeholder="Filter ....">
+                            </multiselect>
+
+                        </div>
+
+                    </td>
+                    <td>
+                      
+                    </td>
+                    <td></td>
+                </tr>
+
+            </table>
+
+    </div>
+    <div class="col-md-2 buttoncontrols" style="Padding-top:3px">
+        <ul>
+            <li><button ng-disabled="loadingstatus" ng-click="GetReport()" style="  color:white;   margin: 2px 0px;   width: 100%;">View Report</button></li>
+            @*<li>
+                <button ng-disabled="loadingstatus" ng-Click="resetDetails()" style="background-color:#ffc551;  color:white;   margin: 2px 0px;   width: 100%;"> <i class="fa  fa-recycle"></i>Reset</button>
+            </li>*@
+            @* <li><button ng-click="exportalldata()" style="     margin: 2px 0px;   width: 100%;">Export All</button></li>*@
+        </ul>
+
+
+
+
+    </div>
+
+</div>
+
+
+<style>
+    multiselect {
+        display: block;
+    }
+
+        multiselect > .btn-group {
+            min-width: 180px;
+        }
+
+        multiselect .btn {
+            width: 100%;
+            background-color: #FFF;
+        }
+
+            multiselect .btn.has-error {
+                border: 1px solid #a94442 !important;
+                color: #db524b;
+            }
+
+        multiselect .dropdown-menu {
+            max-height: 300px;
+            min-width: 200px;
+            overflow-y: auto;
+        }
+
+            multiselect .dropdown-menu .filter > input {
+                width: 80%;
+            }
+
+            multiselect .dropdown-menu .filter .glyphicon {
+                cursor: pointer;
+                pointer-events: all;
+            }
+
+        multiselect .dropdown-menu {
+            width: 200%;
+            box-sizing: border-box;
+            padding: 2px;
+        }
+
+        multiselect > .btn-group > button {
+            /*padding-right: 20px;*/
+        }
+
+
+            multiselect > .btn-group > button > .caret {
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top: 4px solid black;
+                right: 5px;
+                /*top: 45%;*/
+                position: absolute;
+            }
+
+        multiselect .dropdown-menu > li > a {
+            padding: 3px 5px 2px 0px;
+            cursor: pointer;
+        }
+
+            multiselect .dropdown-menu > li > a i {
+                margin-right: 4px;
+            }
+
+        multiselect .btn-small {
+            padding: 2px 5px !important;
+        }
+
+        multiselect .form-group {
+            margin-bottom: 0 !important;
+        }
+
+        multiselect .form-control {
+            margin-bottom: 0 !important;
+        }
+
+    .glyphicon-none:before {
+        content: "\e013";
+        color: transparent !important;
+    }
+</style>
